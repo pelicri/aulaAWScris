@@ -1,5 +1,6 @@
 module.exports = function(app){
 // AWS
+var AWS = require('aws-sdk');
 var s3 = require('aws-sdk')
 // GET
 app.get('/criarbucketXXX',function(req,res){
