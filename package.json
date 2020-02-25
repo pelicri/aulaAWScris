@@ -1,0 +1,12 @@
+{
+  "name": "CloudNinjaAPI",
+  "version": "0.0.1",
+  "main": "test.js",
+  "dependencies": {
+    "aws-sdk": "^2.624.0",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  }
+}
