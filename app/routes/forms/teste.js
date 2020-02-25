@@ -2,7 +2,8 @@ module.exports = function(app){
     var AWS = require('aws-sdk')
     // AWS
     var s3 = new AWS.S3();
-    
+    var resultado;
+
     app.get('/forms/teste', function(req,res){
         res.render('forms/teste');
     });
@@ -26,7 +27,8 @@ module.exports = function(app){
                       returnS3(data);
                       console.log(data);
                       console.log("Bucket: " + req.body.bucketname + " criado com sucesso");
-                      res.render('teste', {resultado: req.body.nome});
+                      resultado = "Bucket " + req.body.nome + " criado com sucesso";
+                      res.render('teste', {resultado: resultado });
                       
                     }
                 });
@@ -44,16 +46,44 @@ module.exports = function(app){
                 function(err, data) {
                     if (err) {
                         console.log("deu merda");
+                        res.render('teste', "Deu merda");
                     } else {
-                        res.render('teste', req.body);
+                        resultado = "Arquvio criado com sucesso";
+                        res.render('teste', {resultado: resultado });
+                        
                     }
                 });
                 break;
             case "deletararquivo":
+                  var params = {
+                    Bucket: req.body.nome,
+                    Key: 'arquivo.txt'
+                  };
+                  s3.deleteObject(params, function(err, data) {
+                      if (err) {
+                        console.log("deu merda");
+                        res.render('teste', "Deu merda");
+                      } else {
+                        resultado = "Arquvio deletado com sucesso";
+                        res.render('teste', {resultado: resultado });
+                      }
+                  });
+              
                 res.render('teste', {resultado: req.body.opt});
                 break;
             case "deletarbucket":
-                res.render('teste', {resultado: req.body.opt});
+                var params = {
+                    Bucket: req.body.nome,
+                };
+                s3.deleteBucket(params, function(err, data) {
+                    if (err) {
+                        console.log("deu merda");
+                        res.render('teste', "Deu merda");
+                      } else {
+                        resultado = "Bucket deletado com sucesso";
+                        res.render('teste', {resultado: resultado });
+                      }
+                });
                 break;
         }
         
