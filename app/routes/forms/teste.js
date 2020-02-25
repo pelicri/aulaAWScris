@@ -48,7 +48,7 @@ module.exports = function(app){
                         console.log("deu merda");
                         res.render('teste', "Deu merda");
                     } else {
-                        resultado = "Arquvio criado com sucesso";
+                        resultado = "Arquivo criado com sucesso";
                         res.render('teste', {resultado: resultado });
                         
                     }
@@ -64,12 +64,10 @@ module.exports = function(app){
                         console.log("deu merda");
                         res.render('teste', "Deu merda");
                       } else {
-                        resultado = "Arquvio deletado com sucesso";
+                        resultado = "Arquivo deletado com sucesso";
                         res.render('teste', {resultado: resultado });
                       }
                   });
-              
-                res.render('teste', {resultado: req.body.opt});
                 break;
             case "deletarbucket":
                 var params = {
