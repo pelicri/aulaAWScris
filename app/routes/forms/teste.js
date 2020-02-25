@@ -2,6 +2,7 @@ module.exports = function(app){
     var AWS = require('aws-sdk')
     // AWS
     var s3 = new AWS.S3();
+    
     app.get('/forms/teste', function(req,res){
         res.render('forms/teste');
     });
