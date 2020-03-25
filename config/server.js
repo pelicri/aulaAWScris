@@ -1,14 +1,15 @@
 // Dependencias
-var AWS = require('aws-sdk');
-var consign = require('consign');
-var express = require('express'); 
+var AWS = require('aws-sdk'); //API's AWS
+var consign = require('consign');  //administrar rotas
+var express = require('express');  //renderizar paginas javascriptß
 var app = express();
-var bodyParser = require('body-parser');
 // Parsear o conteudo
+var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 // Configuração da requisição, cabeçalhos, etc. CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -4,10 +4,12 @@ module.exports = function(app){
     var s3 = new AWS.S3();
     var resultado;
 
+    //formulário de testes das API's
     app.get('/forms/teste', function(req,res){
         res.render('forms/teste');
     });
 
+    //APIs AWS - salvar irá identificar a seleção do formulário e chamar a api correta
     app.post('/teste/salvar', function(req,res){
         var nome = req.body;
         //res.render('Fteste');
@@ -15,6 +17,7 @@ module.exports = function(app){
         //console.log(nome);
 
         switch (req.body.opt) {
+            //chamada da API para criação do Bucket
             case "criarbucket":
                 var params = {
                     Bucket: req.body.nome   
@@ -34,6 +37,7 @@ module.exports = function(app){
                 });
                 break;
 
+            //Chamada da API para criar um arquivo no bucket selecionado
             case "criararquivo":
                 console.log(req.body);
                 var dstKey = 'arquivo.txt';
@@ -54,6 +58,8 @@ module.exports = function(app){
                     }
                 });
                 break;
+            
+            //deletar o arquivo selecionado
             case "deletararquivo":
                   var params = {
                     Bucket: req.body.nome,
@@ -69,6 +75,8 @@ module.exports = function(app){
                       }
                   });
                 break;
+
+            //deletar o bucket selecionado
             case "deletarbucket":
                 var params = {
                     Bucket: req.body.nome,
